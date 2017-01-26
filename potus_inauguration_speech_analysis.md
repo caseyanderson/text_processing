@@ -52,4 +52,30 @@ which is the speech (still including `HTML`). Scrolling up and down through the 
 
 ![](/imgs/top_of_article.png)
 
-Scrolling all the way up to the beginning of the article confirms that it starts with a brief introduction ( "After Donald Trump was sworn in as president...") and a handful of empty `p` tags (no idea why but that is not important right now).
+Scrolling to the beginning of the article confirms that it starts with a brief introduction ( "After Donald Trump was sworn in as president...") and a handful of empty `p` tags (no idea why but that is not important right now). To figure out how to handle this, check the datatype of the contents of soup by executing `type(soup)` in the terminal.
+
+This results in `bs4.element.ResultSet`, a datatype that must be unique to BeautifulSoup (this is an educated guess, as I had never heard of such a datatype prior to using BeautifulSoup). There are three approaches to figuring out how to handle this data:
+
+1. guess
+2. [duckduckgo](https://duckduckgo.com/) the result in hopes of finding more information.
+3. read the manual
+
+TBH I just guessed my way through this by hoping that I could treat `soup` like a `list` (it vaguely resembled a list in the terminal so this seemed like a logical guess). When filtering a list in Python one typically uses a `for` loop to iterate through a collection. While iterating through a collection, one could transform data from list and write the results into a new list, among other things.
+
+To test the hope that the contents of soup may be treated like a list, execute the code below in the terminal. One can copy multiple lines of text to the clipboard and paste into the terminal, **while preserving whitespace!!!**, by executing `paste` in iPython (note: this is a feature that is unique to iPython and will not work in many other shells):
+
+```python
+counter = 0
+
+for i in soup:
+  print('ITEM NO. ' + str(counter) + '\n')
+  print(i)
+  print('\n')
+  counter+=1
+```
+
+Results in something like this in the terminal:
+
+![](/imgs/list_test.png)
+
+This confirms that the results of soup can be treated like a `list` so we can move on.
