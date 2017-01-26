@@ -50,9 +50,9 @@ PyPi is frequently referred to as `pip`. It is used to manage Python library ins
 Search for something on `pip` with the `search` command. For example: `pip3 search ipython`
 
 
-### IPython
+### iPython
 
-Install `IPython` via `pip`: `pip3 install ipython`
+Install `iPython` via `pip`: `pip3 install ipython`
 
 executing `ipython3` in the terminal starts the [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
 
@@ -75,7 +75,7 @@ Confirm that it works with the following steps (all in the terminal):
 
 ### NLTK Things
 
-Run `IPython`, import the `NLTK` library, then run the downloader in the following steps:
+Run `iPython`, import the `NLTK` library, then run the downloader in the following steps:
 
 1. `ipython3`
 2. `import nltk`
