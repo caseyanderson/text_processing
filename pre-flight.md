@@ -2,42 +2,30 @@
 
 Below are instructions regarding installing things needed to participate in this workshop. They include:
 
-* Xcode (just for the Command Line Tools)
-* Homebrew
-* Python3
-* iPython3
-* BeautifulSoup4
-* Natural Language Toolkit
+* [Xcode](https://developer.apple.com/xcode/) (Command Line Tools)
+* [Homebrew](http://brew.sh/)
+* [Python3](https://www.python.org/)
+* [PyPI](https://pypi.python.org/pypi)
+* [iPython3](https://ipython.org/install.html)
+* [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/)
+* [Natural Language Toolkit](http://www.nltk.org/)
+
 
 ### Xcode / The Command Line Tools
 
-Do you have Xcode on your computer? To check to see if you have Xcode on your CPU, go to the terminal and type the following:
+Do you have Xcode on your computer? To check to see if you have Xcode on your CPU, go to the terminal and execute `xcode-select -p`.
 
-`xcode-select -p`
+* If `/Applications/Xcode.app/Contents/Developer` (or something similar) appears as a response proceed to the next step.
+* If anything else happens download and install `Xcode` from [here](https://itunes.apple.com/us/app/xcode/id497799835?mt=12).
 
-If you see this as a response:
-
-`/Applications/Xcode.app/Contents/Developer`
-
-Then you have Xcode and can proceed to the next step.
-
-If you do **not** see this as a response:
-
-`/Applications/Xcode.app/Contents/Developer`
-
-Then you do **not** have `Xcode` and need to download it from [here](https://itunes.apple.com/us/app/xcode/id497799835?mt=12).
-
-Once you have downloaded `Xcode`, go back to your terminal and enter this command:
-
-`xcode-select --install`
-
-Which should bring up something like this:
+Enter `xcode-select --install` into the terminal, which should result in something like this:
 
 ![](imgs/xcode-select_install_cmnd_line_tools.png)
 
 Click `Install` to download and install the `Xcode Command Line Tools` (it takes a while so maybe go make some food or get a cup of coffee or something).
 
-### homebrew
+
+### Homebrew
 
 Copy and paste this code into the terminal and press `enter` to install [homebrew](http://brew.sh/):  `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
@@ -45,43 +33,58 @@ If prompted, agree to the Xcode license:
 
 ![](imgs/agree_to_xcode_license.png)
 
-By running `sudo xcodebuild -license` in the terminal.
+By executing `sudo xcodebuild -license` in the terminal.
 
-### python3
 
-`brew search python3`
+### Python3
 
-`brew install python3`
+Search to see if something is available on `homebrew` with `search`. For example:  `brew search python3`
 
-python package manager pip comes with python...
+To install Python 3 (**not Python 2**) execute `brew install python3` in the terminal.
 
-`pip3 search ipython`
 
-`pip3 install ipython`
+### PyPI
 
-`ipython3` runs the ide
+PyPi is frequently referred to as `pip`. It is used to manage Python library installations and ships with `Python3` when installed via `Homebrew`. The command to use it is `pip3`, **not** pip.
 
-install beautiful soup
+Search for something on `pip` with the `search` command. For example: `pip3 search ipython`
 
-pip3 install beautifulsoup4
 
-install nltk
-pip3 search nltk
+### IPython
 
-results (screenshot)
+Install IPython via `pip`: `pip3 install ipython`
+
+`ipython3` runs the [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
+
+
+### BeautifulSoup4
+
+`pip3 install beautifulsoup4`
+
+
+### Natural Language Toolkit
 
 `sudo pip3 install -U nltk`
 
-confirm that it works:
+Confirm that it works with the following steps (all in the terminal):
 
-ipython3
-import nltk
-nltk. and then hit you tab key
+1. `ipython3`
+2. `import nltk`
+3. `nltk.` <and then hit the TAB key>
 
-getting nltk things
 
-ipython3
-import nltk
-nltk.download()
+### NLTK Things
 
-see photos
+Run ipython, import the nltk library, then run the downloader in the following steps:
+
+1. `ipython3`
+2. `import nltk`
+3. `nltk.download()`
+
+Should look like this in the terminal prior to launching the downloader:
+
+![](/imgs/nltk_download.png)
+
+Then select `book` and click `Download`:
+
+![](/imgs/nltk_downloader_book.png)
