@@ -70,7 +70,7 @@ Confirm that it works with the following steps (all in the terminal):
 
 1. `ipython3`
 2. `import nltk`
-3. `nltk.` <and then hit the TAB key>
+3. `nltk.` and then hit the `TAB` key on your keyboard
 
 
 ### NLTK Things
