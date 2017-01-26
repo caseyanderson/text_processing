@@ -1,4 +1,4 @@
-## presidential inauguration speech analysis
+## POTUS Inauguration Speech Analysis
 Casey Anderson, Spring 2017
 
 
