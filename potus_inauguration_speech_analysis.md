@@ -78,4 +78,40 @@ Results in something like this in the terminal:
 
 ![](/imgs/list_test.png)
 
-This confirms that the results of soup can be treated like a `list` so we can move on.
+This confirms that the results of `soup` can be treated like a `list` so we can move on.
+
+So next I am going to use a BeautifulSoup function to grab **only** the text associated with the `p` tags:
+
+```python
+text = []
+
+for i in soup:
+    text.append(i.text)
+```
+
+Printing `text` (`print(text)`) shows the results:
+
+![](/imgs/results_whitespace_problem.png)
+
+Looks okay but the newline tags are getting rendered as `\n`. In order to get rid of the newline garbage make the following alteration and try again:
+
+```python
+text = []
+
+for i in soup:
+    text.append(i.text.strip())
+```
+
+Printing `text` (`print(text)`) now shows our newline-less corpus:
+
+![](/imgs/no_newlines.png)
+
+The first word Trump actually speaks is "Chief," so we should be able to use the `Python` method `split()` to cut our corpus at that word and remove everything before it. Since `split()` is a method of the `str` (`String`) object one will first have to `join()` the contents of the list into one long string. Run the following code line-by-line:
+
+```python
+allofspeech = ''.join(text) # converts list items to one long string
+allofspeech.find('Chief')
+justspeech = allofspeech[456:]
+```
+
+Now one can print the entire speech by executing `print(justspeech)` in the terminal.
