@@ -132,12 +132,16 @@ Removing punctuation to only look at words:
 import re
 
 corpus = []
+step = 0
 
 for i in tokenized:
-  if re.search('[^A-Za-z0-9]+', i) is not None:
-    print('symbol!')
-  else:
-    corpus.append(str(i))
+    print('position ' + str(step))
+    if re.search('[^A-Za-z0-9]+', i) is not None:
+        print(str(i) + ' is a symbol, skip!')
+    else:
+        print(str(i) + ' is not a symbol, keep!')
+        corpus.append(str(i))
+    step+=1
 ```
 
 Checking length of corpus now that symbols have been removed: `len(corpus)` -> returns 1418 (number of words)
@@ -169,7 +173,7 @@ a = list(a) # btw, you DO have to list caste a otherwise its still a tuple...
 b = list(b)
 ```
 
-To print only the words: `print(a)`, to print only the parts of speech: `print(b)`, so as long as the two lists are kept in sync, one list (`b`, parts of speech) can be used to filter another (`a`, words).  For example:
+To print only the words: `print(a)`, to print only the parts of speech: `print(b)`. As long as the two lists are kept in sync, one list (`b`, parts of speech) can be used to filter another (`a`, words).  For example:
 
 
 
