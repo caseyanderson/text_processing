@@ -52,17 +52,17 @@ which is the speech (still including `HTML`). Scrolling up and down through the 
 
 ![](/imgs/top_of_article.png)
 
-Scrolling to the beginning of the article confirms that it starts with a brief introduction ( "After Donald Trump was sworn in as president...") and a handful of empty `p` tags (no idea why but that is not important right now). Next check the datatype of the contents of `soup` by executing `type(soup)` in the terminal.
+The article starts with a brief introduction ( "After Donald Trump was sworn in as president...") and a handful of empty `p` tags (no idea why but that is not important right now).
 
-This results in `bs4.element.ResultSet`, a datatype that must be unique to BeautifulSoup (this is an educated guess, as I had never heard of such a datatype prior to using BeautifulSoup). There are three approaches to figuring out how to handle this data:
+Next check the datatype of the contents of `soup` by executing `type(soup)` in the terminal. This results in `bs4.element.ResultSet`, a datatype that must be unique to BeautifulSoup (this is an educated guess, as I had never heard of such a datatype prior to using BeautifulSoup). There are three approaches to figuring out how to handle this data:
 
-1. guess
+1. read the manual
 2. [duckduckgo](https://duckduckgo.com/) the result in hopes of finding more information.
-3. read the manual
+3. guess
 
-TBH I just guessed my way through this by hoping that I could treat `soup` like a `list` (it vaguely resembled a list in the terminal so this seemed like a logical test). When filtering a list in Python one typically uses a `for` loop to iterate through a collection. While iterating through a collection one can transform data from an input list and write the results into a new output list, for example.
+TBH I started by guessing and happened to guess correctly: one can treat `soup` like a `list` (it vaguely resembled a list in the terminal so this seemed like a logical test). When filtering a list in Python one typically uses a `for` loop to iterate through a collection. While iterating through a collection one can transform data from an input list and write the results into a new output list, for example.
 
-To test if soup may be treated like a list, execute the code below in the terminal. Note: one can copy multiple lines of text to the clipboard and paste into the terminal, **while preserving whitespace!!!**, by executing `paste` in iPython (note: this is a feature that is unique to iPython and will not work in many other shells):
+To test if soup may be treated like a list, execute the code below in the terminal. Note: one can copy multiple lines of text to the clipboard and paste into the terminal, **while preserving whitespace (!!!)**, by executing `paste` in iPython (note: this is a feature that is unique to iPython and will not work in many other shells):
 
 ```python
 counter = 0
@@ -80,7 +80,7 @@ Results in something like this in the terminal:
 
 This confirms that the results of `soup` can be treated like a `list` so we can move on.
 
-So next I am going to use a BeautifulSoup function to grab **only** the text associated with the `p` tags:
+Next I am going to use a BeautifulSoup function to grab **only** the text associated with the `p` tags:
 
 ```python
 text = []
@@ -106,7 +106,7 @@ Printing `text` (`print(text)`) now shows our newline-less corpus:
 
 ![](/imgs/no_newlines.png)
 
-The first word Trump actually speaks is "Chief," so we should be able to use the `Python` method `split()` to cut our corpus at that word and remove everything before it. Since `split()` is a method of the `str` (`String`) object one will first have to `join()` the contents of the list into one long string. Run the following code line-by-line:
+The first word Trump actually speaks is "Chief," so we should be able to use the `Python` method `split()` to cut our corpus at that word and remove everything before it. Since `split()` is a method of the `str` (`String`) object one will first have to `join()` the contents of the list into one long string. Run the following code line-by-line to do so:
 
 ```python
 allofspeech = ''.join(text) # converts list items to one long string
@@ -115,3 +115,34 @@ justspeech = allofspeech[456:]
 ```
 
 Now one can print the entire speech by executing `print(justspeech)` in the terminal.
+
+### Simple Analysis
+
+Length of Speech (characters, includes punctuation and spaces): `len(justspeech)` -> returns 8357
+
+Tokenize by word (includes punctuation, drops whitespace): `tokenized = nltk.word_tokenize(justspeech)`
+
+Removing punctuation to only look at words:
+
+```python
+import re
+
+corpus = []
+
+for i in tokenized:
+  if re.search('[^A-Za-z0-9]+', i) is not None:
+    print('no match')
+  else:
+    corpus.append(str(i))
+```
+
+Checking length of corpus now that symbols have been removed: `len(corpus)` -> returns 1418 (number of words in the speech)
+
+To figure out the most frequently used words:
+
+```python
+import nltk
+
+freak = nltk.FreqDist(output)
+freak.most_common(40) # shows the forty most common words ordered by frequency
+```

@@ -54,7 +54,18 @@ for i in speech:
 # doesnt have a newline problem
 
 for i in speech:
-    text.append((i.text).strip())
+    text.append((i.text.strip())
+
+
+len(text)
+
+counter = 0
+
+for i in text:
+    if i == 'Chief':
+        i
+
+len(text)
 
 # converts list items to one long string
 allofspeech = ''.join(text)
