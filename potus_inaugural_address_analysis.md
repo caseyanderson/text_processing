@@ -235,7 +235,7 @@ def posFilter(corpus, tagged, pos, dct ):
                 step = step + 1
     return posCorpus
 
-filtered = posFilter(a, b, 'noun', dctnry)
+filtered = posFilter(a, b, 'pronoun', dctnry)
 
 ```
 
@@ -245,7 +245,7 @@ Now one can run the parts of speech tagger again for a more fine-grained look at
 import nltk
 
 freak = nltk.FreqDist(filtered)
-freak.most_common(15) # shows the fifteen most common words ordered by frequency
+freak.most_common(25) # shows the fifteen most common words ordered by frequency
 ```
 
 
