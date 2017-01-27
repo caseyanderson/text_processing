@@ -164,7 +164,9 @@ words = nltk.pos_tag(corpus)
 The parts of speech tagger outputs a `tuple`, an immutable (un-changeable) datatype that vaguely resembles a `list`. It's a lot easier to deal with `lists` in Python than `tuples` (just trust me on this), so the first step is to split the `tuple` into two `lists`:
 
 ```python
-
+a,b = zip(*words)
+a = list(a) # btw, you do have to list caste this otherwise its still a tuple...
+b = list(b)
 ```
 
 for obama 2013: soup.find_all("div", class_="field-items")
