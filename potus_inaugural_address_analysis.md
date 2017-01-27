@@ -135,7 +135,7 @@ corpus = []
 
 for i in tokenized:
   if re.search('[^A-Za-z0-9]+', i) is not None:
-    print('no match')
+    print('symbol!')
   else:
     corpus.append(str(i))
 ```
