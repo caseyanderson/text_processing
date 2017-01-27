@@ -2,7 +2,9 @@
 Casey Anderson, Spring 2017
 
 Trump 2017 Inaugural Address (via ABC News) [here](http://abcnews.go.com/Politics/full-text-president-donald-trumps-inauguration-speech/story?id=44915821).
+
 Obama 2013 Inaugural Address (via WhiteHouse.gov) [here](https://obamawhitehouse.archives.gov/the-press-office/2013/01/21/inaugural-address-president-barack-obama).
+
 Obama 2009 Inaugural Address (via NY Times) [here](http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html)
 
 ### Getting the text (Finding a Corpus)
