@@ -150,3 +150,6 @@ import nltk
 freak = nltk.FreqDist(output)
 freak.most_common(40) # shows the forty most common words ordered by frequency
 ```
+Which results in something like the below:
+
+![](/imgs/most_common.png)
