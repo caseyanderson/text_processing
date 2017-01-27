@@ -7,6 +7,7 @@ Obama 2013 Inaugural Address (via WhiteHouse.gov) [here](https://obamawhitehouse
 
 Obama 2009 Inaugural Address (via NY Times) [here](http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html)
 
+
 ### Getting the text (Finding a Corpus)
 
 ```python
@@ -117,6 +118,7 @@ justspeech = allofspeech[456:]
 ```
 
 Now one can print the entire speech by executing `print(justspeech)` in the terminal.
+
 
 ### Simple Analysis
 
