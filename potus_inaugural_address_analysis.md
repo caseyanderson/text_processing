@@ -1,9 +1,9 @@
-## POTUS Inauguration Speech Analysis
+## POTUS Inaugural Address Analysis
 Casey Anderson, Spring 2017
 
-
-A transcript (ABC News) of the Trump Inauguration Speech, used as an example throughout, can be found [here](http://abcnews.go.com/Politics/full-text-president-donald-trumps-inauguration-speech/story?id=44915821).
-
+Trump 2017 Inaugural Address (via ABC News) [here](http://abcnews.go.com/Politics/full-text-president-donald-trumps-inauguration-speech/story?id=44915821).
+Obama 2013 Inaugural Address (via WhiteHouse.gov) [here](https://obamawhitehouse.archives.gov/the-press-office/2013/01/21/inaugural-address-president-barack-obama).
+Obama 2009 Inaugural Address (via NY Times) [here](http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html)
 
 ### Getting the text (Finding a Corpus)
 
@@ -27,7 +27,7 @@ Executing `soup` in `iPython` will return this:
 
 ![](/imgs/ugly.png)
 
-This is all of the text from that URL **including** the speech, the `HTML` formatting the speech and the article around it, any `Javascript` or other scripts that are executed, etc.. Since the goal is to simply get the Inauguration Speech one can ignore anything that is not text from the article.
+This is all of the text from that URL **including** the speech, the `HTML` formatting the speech and the article around it, any `Javascript` or other scripts that are executed, etc.. Since the goal is to simply get the Inaugural Address one can ignore anything that is not text from the article.
 
 Nonetheless, it's not always easy to locate the portion of the text one cares about, so one often has to scan through the results of `soup` "by hand."
 
