@@ -155,7 +155,7 @@ Which results in something like the below:
 
 ![](/imgs/most_common.png)
 
-Running `freak.most_common(1)` currently returns `'and', 72`. If one wanted to exclude certain words (like "and") from the corpus, one could analyze the parts of speech of each word and then eliminate all articles, for example.
+Running `freak.most_common(1)` currently returns `'and', 72`. If one wanted to exclude certain words (like "and") from the corpus, one could analyze the parts of speech of each word and then eliminate all articles and conjunctions, for example.
 
 ```python
 words = nltk.pos_tag(corpus)
