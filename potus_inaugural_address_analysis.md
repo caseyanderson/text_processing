@@ -40,7 +40,7 @@ It's also harder to read `HTML` without proper indentation and lineation. `Beaut
 
 Easier to read, but still includes lots of stuff that is [noise](https://en.wikipedia.org/wiki/Signal-to-noise_ratio) in this context.
 
-Scan through the the results in the terminal and try to figure out where the article starts and ends. While doing so note any patterns in the construction of the HTML.
+Scan through the the results in the terminal and try to figure out where the article starts and ends. While doing so note any patterns in the construction of the HTML. If it is too hard to find the desired content in the terminal, try using something like Firefox's `Page Source`.
 
 
 ### Removing everything but the article (Conditioning/Cleaning/Filtering the Corpus)
@@ -153,3 +153,7 @@ freak.most_common(40) # shows the forty most common words ordered by frequency
 Which results in something like the below:
 
 ![](/imgs/most_common.png)
+
+
+for obama 2013: soup.find_all("div", class_="field-items")
+for obama 2009: soup.find_all("p", class_="story-body-text story-content")
