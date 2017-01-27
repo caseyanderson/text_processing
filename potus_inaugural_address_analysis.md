@@ -63,9 +63,9 @@ Next check the datatype of the contents of `soup` by executing `type(soup)` in t
 2. [duckduckgo](https://duckduckgo.com/) the result in hopes of finding more information.
 3. guess
 
-TBH I started by guessing and happened to guess correctly: one can treat `soup` like a `list` (it vaguely resembled a list in the terminal so this seemed like a logical test). When filtering a list in Python one typically uses a `for` loop to iterate through a collection. While iterating through a collection one can transform data from an input list and write the results into a new output list, for example.
+TBH I started by guessing and happened to guess correctly: one can treat `soup` like a `list` (it vaguely resembled a list in the terminal so this seemed like a logical guess). When filtering a list in Python one typically uses a `for` loop to iterate (do something for every item) through a collection (list). Some people think of this as "stepping" through a list.
 
-To test if soup may be treated like a list, execute the code below in the terminal. Note: one can copy multiple lines of text to the clipboard and paste into the terminal, **while preserving whitespace (!!!)**, by executing `paste` in iPython (note: this is a feature that is unique to iPython and will not work in many other shells):
+To test if `soup` may be treated like a `list`, execute the code below in the terminal. Note: one can copy multiple lines of text to the clipboard and paste into the terminal, **while preserving whitespace (!!!)**, by executing `paste` in iPython (this is a feature that is unique to iPython and will not work in many other shells):
 
 ```python
 counter = 0
@@ -140,20 +140,33 @@ for i in tokenized:
     corpus.append(str(i))
 ```
 
-Checking length of corpus now that symbols have been removed: `len(corpus)` -> returns 1418 (number of words in the speech)
+Checking length of corpus now that symbols have been removed: `len(corpus)` -> returns 1418 (number of words)
 
 To figure out the most frequently used words:
 
 ```python
 import nltk
 
-freak = nltk.FreqDist(output)
+freak = nltk.FreqDist(corpus)
 freak.most_common(40) # shows the forty most common words ordered by frequency
 ```
+
 Which results in something like the below:
 
 ![](/imgs/most_common.png)
 
+Running `freak.most_common(1)` currently returns `'and', 72`. If one wanted to exclude certain words (like "and") from the corpus, one could analyze the parts of speech of each word and then eliminate all articles, for example.
+
+```python
+words = nltk.pos_tag(corpus)
+```
+
+The parts of speech tagger outputs a `tuple`, an immutable (un-changeable) datatype that vaguely resembles a `list`. It's a lot easier to deal with `lists` in Python than `tuples` (just trust me on this), so the first step is to split the `tuple` into two `lists`:
+
+```python
+
+```
 
 for obama 2013: soup.find_all("div", class_="field-items")
+
 for obama 2009: soup.find_all("p", class_="story-body-text story-content")
