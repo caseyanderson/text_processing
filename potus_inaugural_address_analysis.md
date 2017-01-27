@@ -3,10 +3,6 @@ Casey Anderson, Spring 2017
 
 Trump 2017 Inaugural Address (via ABC News) [here](http://abcnews.go.com/Politics/full-text-president-donald-trumps-inauguration-speech/story?id=44915821).
 
-Obama 2013 Inaugural Address (via WhiteHouse.gov) [here](https://obamawhitehouse.archives.gov/the-press-office/2013/01/21/inaugural-address-president-barack-obama).
-
-Obama 2009 Inaugural Address (via NY Times) [here](http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html)
-
 
 ### Getting the text (Finding a Corpus)
 
@@ -57,15 +53,15 @@ which is the speech (still including `HTML`). Scrolling up and down through the 
 
 The article starts with a brief introduction ( "After Donald Trump was sworn in as president...") and a handful of empty `p` tags (no idea why but that is not important right now).
 
-Next check the datatype of the contents of `soup` by executing `type(soup)` in the terminal. This results in `bs4.element.ResultSet`, a datatype that must be unique to BeautifulSoup (this is an educated guess, as I had never heard of such a datatype prior to using BeautifulSoup). There are three approaches to figuring out how to handle this data:
+Next check the datatype of the contents of `soup` by executing `type(soup)` in the terminal. This results in `bs4.element.ResultSet`, a datatype that is unique to BeautifulSoup. There are three approaches to figuring out how to handle this data:
 
-1. read the manual
-2. [duckduckgo](https://duckduckgo.com/) the result in hopes of finding more information.
+1. read the [docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+2. [duckduckgo](https://duckduckgo.com/) the datatype in hopes of finding more information.
 3. guess
 
-TBH I started by guessing and happened to guess correctly: one can treat `soup` like a `list` (it vaguely resembled a list in the terminal so this seemed like a logical guess). When filtering a list in Python one typically uses a `for` loop to iterate (do something for every item) through a collection (list). Some people think of this as "stepping" through a list.
+TBH I started by guessing and happened to guess correctly: one can treat `soup` like a `list` (it vaguely resembled a list in the terminal so this seemed like a logical guess). When filtering a list in Python one typically uses a `for` loop to iterate (do something for every `item`) through a `collection` (a `list` of `items`). Some people think of this as "stepping" through a list.
 
-To test if `soup` may be treated like a `list`, execute the code below in the terminal. Note: one can copy multiple lines of text to the clipboard and paste into the terminal, **while preserving whitespace (!!!)**, by executing `paste` in iPython (this is a feature that is unique to iPython and will not work in many other shells):
+To test if `soup` may be treated like a `list`, execute the code below in the terminal. One can copy multiple lines of text to the clipboard and paste into the terminal, **while preserving whitespace (!!!)**, by executing `paste` in iPython (this is a feature that is unique to iPython and will not work in many other shells):
 
 ```python
 counter = 0
@@ -146,7 +142,8 @@ for i in tokenized:
 
 Checking length of corpus now that symbols have been removed: `len(corpus)` -> returns 1418 (number of words)
 
-To figure out the most frequently used words:
+
+### Word Frequency
 
 ```python
 import nltk
@@ -165,18 +162,103 @@ Running `freak.most_common(1)` currently returns `'and', 72`. If one wanted to e
 words = nltk.pos_tag(corpus)
 ```
 
-The parts of speech tagger outputs a `tuple`, an immutable (un-changeable) datatype that vaguely resembles a `list`. It's a lot easier to deal with `lists` in Python than `tuples` (just trust me on this), so the first step is to split the `tuple` into two `lists`:
+The parts of speech tagger outputs a `tuple`, an immutable (un-changeable) datatype that resembles a `list`. It's a lot easier to deal with `lists` in Python than `tuples` (just trust me on this) so the first step is to split the `tuple` into two `lists`:
 
 ```python
-a,b = zip(*words) # this line is cool, found it while poking around stackoverflow re splitting a tuple into two lists
+a,b = zip(*words) # this line is cool, found it while poking around stackoverflow
 a = list(a) # btw, you DO have to list caste a otherwise its still a tuple...
 b = list(b)
 ```
 
-To print only the words: `print(a)`, to print only the parts of speech: `print(b)`. As long as the two lists are kept in sync, one list (`b`, parts of speech) can be used to filter another (`a`, words).  For example:
+To print only the words: `print(a)`, to print only the parts of speech: `print(b)`. As long as the two lists are kept in sync, one list (`b`, parts of speech) can be used to filter another (`a`, words).
+
+Below is a function called `posFilter`. It takes in the two lists created above (list of all words and list of parts of speech) and uses `b` to keep words that belong to parts of speech we care about by passing those words into a new list.
+
+`posFilter` knows which part of speech we care about by looking at the `pos` parameter. This parameter uses the string at `pos` to identify and retrieve the parts of speech tags we want to use from a dictionary (`dct`). Through multiple passes through the original corpus, one is able to prevent `articles`, for example, from appearing in the new list.
+
+```python
+def posFilter(corpus, tagged, pos, dct ):
+    step = 0
+    size = len(tagged)
+    posCorpus = corpus
+    x = dct[str(pos)]
+
+    for i in x:
+        step = 0
+        for j in tagged:
+            if i == j:
+                posCorpus[step] = corpus[step]
+                step = step + 1
+            else:
+                step = step + 1
+    return posCorpus
+```
+
+Dictionaries (or `dict` for short) in `Python` are similar to `lists` but are comprised of `key` / `value` pairs. `keys` are like labels: they are strings (`str`) used to organize `values` associated with them. the `values` can be anything: an `int`, a `str`, a `list`, another `dict`, etc..
+
+A dictionary is needed here so one can pass a part of speech into the `dict` without needing to know how many tags are associated with that part of speech ahead of time (**yay!**). This is important because there are, for example, four possible tags for `nouns` but only 3 for `adverbs`.
+
+```python
+dctnry={}
+dctnry['noun'] = [ 'NN', 'NNP', 'NNPS', 'NNS']
+dctnry['adj'] = ['JJ', 'JJR', 'JJS']
+dctnry['vrb'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
+dctnry['advrb'] = ['RB', 'RBR', 'RBS']
+dctnry['pronoun'] = ['PRP', 'PRP']
+```
 
 
+### Testing the Filter
 
-for obama 2013: soup.find_all("div", class_="field-items")
+```python
 
-for obama 2009: soup.find_all("p", class_="story-body-text story-content")
+dctnry={}
+dctnry['noun'] = [ 'NN', 'NNP', 'NNPS', 'NNS']
+dctnry['adj'] = ['JJ', 'JJR', 'JJS']
+dctnry['vrb'] = ['VB', 'VBD', 'VBG', 'VBN', 'VBP', 'VBZ']
+dctnry['advrb'] = ['RB', 'RBR', 'RBS']
+dctnry['pronoun'] = ['PRP', 'PRP']
+
+def posFilter(corpus, tagged, pos, dct ):
+    step = 0
+    size = len(tagged)
+    posCorpus = []
+    x = dct[str(pos)]
+
+    for i in x:
+        step = 0
+        for j in tagged:
+            if i == j:
+                posCorpus.append(corpus[step])
+                step = step + 1
+            else:
+                step = step + 1
+    return posCorpus
+
+filtered = posFilter(a, b, 'noun', dctnry)
+
+```
+
+Now one can run the parts of speech tagger again for a more fine-grained look at word frequency:
+
+```python
+import nltk
+
+freak = nltk.FreqDist(filtered)
+freak.most_common(15) # shows the fifteen most common words ordered by frequency
+```
+
+
+### Next steps
+
+The code above can be reused more or less verbatim for other Inaugural Addresses, one simply has to change two things:
+1. the url of the input text
+2. the  `soup.find_all` statement to accurately pick up the text from its location on that page.
+
+For your convenience below are links to both Obama Inaugural addresses and one-liners detailing how to update `soup.find_all()` per each link:
+
+1. Obama 2013 Inaugural Address (via WhiteHouse.gov) [here](https://obamawhitehouse.archives.gov/the-press-office/2013/01/21/inaugural-address-president-barack-obama)
+2. `soup.find_all("div", class_="field-items")`
+
+1. Obama 2009 Inaugural Address (via NY Times) [here](http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html)
+2. `soup.find_all("p", class_="story-body-text story-content")`
