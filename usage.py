@@ -1,3 +1,4 @@
+# to analyze the Trump Inaugural Address
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
@@ -13,9 +14,7 @@ tags['pronoun'] = ['PRP', 'PRP']
 
 speech = web2soup('http://abcnews.go.com/Politics/full-text-president-donald-trumps-inauguration-speech/story?id=44915821')
 
-# for Trump Inaugural Address
 soup = speech.find_all('p')
-
 
 html = soup2text(soup)
 
@@ -29,4 +28,4 @@ pos = posTag(soup)
 
 a = tupleSplitter(pos)
 
-filtered = posFilter(a[0], a[1], 'pronoun', tags)
+filtered = posFilter(a[0], a[1], 'adj', tags)

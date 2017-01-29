@@ -1,5 +1,3 @@
-# from bs4 import BeautifulSoup
-# from urllib.request import urlopen
 
 
 # takes a url as input, outputs a soup object
@@ -41,7 +39,6 @@ def nopunc(tokenized):
         if re.search('[^A-Za-z0-9]+', i) is not None:
             print(str(i) + ' is a symbol, skip!')
         else:
-            print(str(i) + ' is not a symbol, keep!')
             corpus.append(str(i))
         step+=1
     return corpus
