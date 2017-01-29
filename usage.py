@@ -19,14 +19,17 @@ text = list2string(text, "Chief")
 # to analyze the Obama 2013 Inaugural Address
 speech = web2soup('https://www.washingtonpost.com/news/wonk/wp/2013/01/21/transcript-president-obama-2013-inaugural-address/?utm_term=.93826e4af3c8')
 soup = speech.find_all('article')
+text = soup2text(soup)
+text = list2string(text, "Vice President")
 
 # to analyze the Obama 2009 Inaugural Address
 speech = web2soup('http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html')
 soup = speech.find_all("p", class_="story-body-text story-content")
-
 text = soup2text(soup)
+# get rid of applause
+text = list2string(text, "whatever")
 
-text = list2string(text, "Vice President")
+### back to general below
 
 words = tokenizer(text)
 
