@@ -33,13 +33,13 @@ text = list2string(text, "whatever")
 #########
 
 ######### back to general below
-
 words = tokenizer(text)
 soup = nopunc(words)
 pos = posTag(soup)
 a = tupleSplitter(pos)
 
 filtered = posFilter(a[0], a[1], 'noun', tags)
+filtered = lower(filtered)
 
 freak = nltk.FreqDist(filtered)
 freak.most_common(25) # shows the fifteen most common words ordered by frequency

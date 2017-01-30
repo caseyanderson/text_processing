@@ -71,3 +71,12 @@ def posFilter(corpus, tagged, pos, dct ):
             else:
                 step = step + 1
     return posCorpus
+
+# make the stuff lowercase
+def lower(filtered):
+    counter = 0
+
+    for i in filtered:
+        filtered[counter] = i.lower()
+        counter +=1
+    return filtered
