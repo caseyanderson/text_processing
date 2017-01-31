@@ -25,11 +25,10 @@ text = list2string(text, "Vice President")
 #########
 
 ######### to analyze the Obama 2009 Inaugural Address
-speech = web2soup('http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html')
-soup = speech.find_all("p", class_="story-body-text story-content")
+speech = web2soup('http://obamawhitehouse.archives.gov/blog/2009/01/21/president-barack-obamas-inaugural-address')
+soup = speech.find_all("div", class_="legacy-para")
 text = soup2text(soup)
-# get rid of applause
-text = list2string(text, "whatever")
+text = list2string(text, "My fellow citizens")
 #########
 
 ######### back to general below
@@ -38,7 +37,7 @@ soup = nopunc(words)
 pos = posTag(soup)
 a = tupleSplitter(pos)
 
-filtered = posFilter(a[0], a[1], 'noun', tags)
+filtered = posFilter(a[0], a[1], 'adj', tags)
 
 # surely these next three lines can be one function
 filtered = lower(filtered)
