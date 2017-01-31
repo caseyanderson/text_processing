@@ -258,7 +258,9 @@ The code above can be reused more or less verbatim for other Inaugural Addresses
 For your convenience below are links to both Obama Inaugural addresses and one-liners detailing how to update `soup.find_all()` per each link:
 
 1. Obama 2013 Inaugural Address (via Washington Post) [here](https://www.washingtonpost.com/news/wonk/wp/2013/01/21/transcript-president-obama-2013-inaugural-address/?utm_term=.93826e4af3c8)
-2. `soup.find_all("div", class_="field-items")`
+2. `soup = speech.find_all('article')`
+3. Speech starts with "Vice President"
 
-1. Obama 2009 Inaugural Address (via NY Times) [here](http://www.nytimes.com/2009/01/20/us/politics/20text-obama.html)
-2. `soup.find_all("p", class_="story-body-text story-content")`
+1. Obama 2009 Inaugural Address (via Obama White House) [here](http://obamawhitehouse.archives.gov/blog/2009/01/21/president-barack-obamas-inaugural-address)
+2. `soup = speech.find_all("div", class_="legacy-para")`
+3. Speech starts with "My fellow citizens"
