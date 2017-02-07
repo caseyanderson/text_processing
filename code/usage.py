@@ -18,7 +18,7 @@ text = list2string(text, "Chief")
 #########
 
 ######### to analyze the Obama 2013 Inaugural Address
-speech = web2soup('https://www.washingtonpost.com/news/wonk/wp/2013/01/21/transcript-president-obama-2013-inaugural-address/?utm_term=.93826e4af3c8')
+speech = web2soup('https://www.washingtonpost.com/news/wonk/wp/2013/01/21/transcript-president-obama-2013-inaugural-address/?utm_term=.a7277afc9d89')
 soup = speech.find_all('article')
 text = soup2text(soup)
 text = list2string(text, "Vice President")
