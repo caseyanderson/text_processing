@@ -34,4 +34,4 @@ nbproject
 
 
 # Folders to ignore
-text_processing/code/trblsht/
+/**/trblsht/
