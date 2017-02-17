@@ -91,7 +91,7 @@ def lower(filtered):
 
 
 # this will return the error code number
-def handle_errors(url):
+def show_errors(url):
     req = urllib.request.Request(url)
     try:
         urllib.request.urlopen(req)
