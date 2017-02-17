@@ -6,6 +6,7 @@ def web2soup(link):
     soup = BeautifulSoup(url, 'html.parser')
     return soup
 
+
 # takes a filtered soup object as input, returns only text content from html, strips newline chars, outputs list
 def soup2text(soup):
     text = []
@@ -13,6 +14,7 @@ def soup2text(soup):
     for i in soup:
         text.append(i.text.strip())
     return text
+
 
 # takes a list item as input, uses a speech start word to cut out intro (etc.), and outputs one string (justspeech)
 def list2string(corpus_list, start_word):
@@ -24,10 +26,12 @@ def list2string(corpus_list, start_word):
     justspeech = allofspeech[start: ]
     return justspeech
 
+
 # takes a string as input, outputs a list of words
 def tokenizer(corpus):
     tokenized = nltk.word_tokenize(corpus)
     return tokenized
+
 
 # takes a list of words as input, returns a new list with no punctuation
 def nopunc(tokenized):
@@ -43,10 +47,12 @@ def nopunc(tokenized):
         step+=1
     return corpus
 
+
 # takes a word list as input, returns a new tuple with parts of speech tags
 def posTag(corpus):
     words = nltk.pos_tag(corpus)
     return words
+
 
 # takes a tuple and splits it into two lists
 def tupleSplitter(corpus):
@@ -54,6 +60,7 @@ def tupleSplitter(corpus):
     a = list(a)
     b = list(b)
     return a, b
+
 
 # takes corpus, pos tag lists and dictionary of parts of speech tag terms, uses pos to choose tags, outputs parts of speech only
 def posFilter(corpus, tagged, pos, dct ):
@@ -72,6 +79,7 @@ def posFilter(corpus, tagged, pos, dct ):
                 step = step + 1
     return posCorpus
 
+
 # make the stuff lowercase
 def lower(filtered):
     counter = 0
@@ -80,3 +88,13 @@ def lower(filtered):
         filtered[counter] = i.lower()
         counter +=1
     return filtered
+
+
+# this will return the error code number
+def handle_errors(url):
+    req = urllib.request.Request(url)
+    try:
+        urllib.request.urlopen(req)
+        print('success!')
+    except urllib.error.URLError as error:
+        print("Error no. " + str(error.code))
