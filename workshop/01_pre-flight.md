@@ -2,7 +2,7 @@
 
 Below are instructions regarding installing things needed to participate in this workshop. They include:
 
-* [Xcode](https://developer.apple.com/xcode/) (Command Line Tools)
+* [Xcode](https://developer.apple.com/xcode/)
 * [Homebrew](http://brew.sh/)
 * [Python3](https://www.python.org/)
 * [PyPI](https://pypi.python.org/pypi)
