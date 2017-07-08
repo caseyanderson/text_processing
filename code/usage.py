@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 import re
 import nltk
 
@@ -37,7 +37,7 @@ soup = nopunc(words)
 pos = posTag(soup)
 a = tupleSplitter(pos)
 
-filtered = posFilter(a[0], a[1], 'adj', tags)
+filtered = posFilter(a[0], a[1], 'noun', tags)
 
 # surely these next three lines can be one function
 filtered = lower(filtered)

@@ -1,11 +1,16 @@
 
 
 # takes a url as input, outputs a soup object
-def web2soup(link):
+def gen2soup(link):
     url = urlopen(str(link))
     soup = BeautifulSoup(url, 'html.parser')
     return soup
 
+def google2soup(link):
+    req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
+    webpage = urlopen(req).read()
+    soup = BeautifulSoup(webpage, 'html.parser')
+    return soup
 
 # takes a filtered soup object as input, returns only text content from html, strips newline chars, outputs list
 def soup2text(soup):
