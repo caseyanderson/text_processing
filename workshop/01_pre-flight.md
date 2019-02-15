@@ -64,7 +64,7 @@ executing `ipython3` in the terminal starts the [IDE](https://en.wikipedia.org/w
 
 ### Natural Language Toolkit
 
-`sudo pip3 install -U nltk`
+`pip3 install -U nltk`
 
 Confirm that it works with the following steps (all in the terminal):
 
