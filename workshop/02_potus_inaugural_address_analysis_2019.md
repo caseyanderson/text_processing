@@ -74,23 +74,37 @@ for i in soup:
 
 Printing `text` (`print(text)`) shows the results.
 
-Looks okay but the newline tags are getting rendered as `\n`. In order to get rid of the newline garbage make the following alteration and try again:
+Looks okay but there is some weird noise showing up in certain lines: `\xa0`. Not sure what that is, but it should be removed.
+
+In order to remove `\xa0` we first need to be able to reliably identify it in `text`. Currently `text[2]` returns a line containing `\xa0`. Let's begin by confirming that we can identify that series of characters if it is in a list item:
 
 ```python
-text = []
-
-for i in soup:
-    text.append(i.text.strip())
+if '\xa0' in text[2]:
+    print('YES')
 ```
 
-Printing `text` (`print(text)`) now shows our newline-less corpus:
+The above `if` statement returns `YES`, confirming that we can identify that character if it is present in our list. Next, we want to remove every instance of '\xa0' if it is in a list item. There are lots of ways to do this, but here is one:
 
-![](/imgs/no_newlines.png)
+```python
+filtered = []
+counter = 0
+
+for i in text:
+    if '\xa0' in i:
+        i = i.replace('\xa0', '')
+        filtered.append(i)
+    else:
+        filtered.append(i)
+    print(i)
+    counter += 1
+```
+
+Printing `filtered` (`print(filtered)`) now shows our cleaned corpus.
 
 The first word Obama actually speaks is "Vice," so we should be able to use the `Python` method `split()` to cut our corpus at that word and remove everything before it. Since `split()` is a method of the `str` (`String`) object one will first have to `join()` the contents of the list into one long string. Run the following code line-by-line to do so:
 
 ```python
-allofspeech = ''.join(text) # converts list items to one long string
+allofspeech = ''.join(filtered) # converts list items to one long string
 allofspeech.find('Vice')
 justspeech = allofspeech[26:]
 ```
@@ -225,20 +239,3 @@ import nltk
 freak = nltk.FreqDist(filtered)
 freak.most_common(25) # shows the fifteen most common words ordered by frequency
 ```
-
-
-### Next steps
-
-The code above can be reused more or less verbatim for other Inaugural Addresses, one simply has to change two things:
-1. the url of the input text
-2. the  `soup.find_all` statement to accurately pick up the text from its location on that page.
-
-For your convenience below are links to both Obama Inaugural addresses and one-liners detailing how to update `soup.find_all()` per each link:
-
-1. Obama 2013 Inaugural Address (via Washington Post) [here](https://www.washingtonpost.com/news/wonk/wp/2013/01/21/transcript-president-obama-2013-inaugural-address/?utm_term=.93826e4af3c8)
-2. `soup = speech.find_all('article')`
-3. Speech starts with "Vice President"
-
-1. Obama 2009 Inaugural Address (via Obama White House) [here](http://obamawhitehouse.archives.gov/blog/2009/01/21/president-barack-obamas-inaugural-address)
-2. `soup = speech.find_all("div", class_="legacy-para")`
-3. Speech starts with "My fellow citizens"
