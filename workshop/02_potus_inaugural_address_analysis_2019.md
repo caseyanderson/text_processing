@@ -92,9 +92,7 @@ counter = 0
 for i in text:
     if '\xa0' in i:
         i = i.replace('\xa0', '')
-        filtered.append(i)
-    else:
-        filtered.append(i)
+    filtered.append(i)
     print(i)
     counter += 1
 ```
