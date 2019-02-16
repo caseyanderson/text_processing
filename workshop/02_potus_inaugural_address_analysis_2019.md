@@ -170,17 +170,15 @@ Below is a function called `posFilter`. It takes in the two lists created above 
 def posFilter(corpus, tagged, pos, dct ):
     step = 0
     size = len(tagged)
-    posCorpus = corpus
+    posCorpus = []
     x = dct[str(pos)]
 
     for i in x:
         step = 0
         for j in tagged:
             if i == j:
-                posCorpus[step] = corpus[step]
-                step = step + 1
-            else:
-                step = step + 1
+                posCorpus.append(corpus[step])
+            step = step + 1
     return posCorpus
 ```
 
@@ -220,9 +218,7 @@ def posFilter(corpus, tagged, pos, dct ):
         for j in tagged:
             if i == j:
                 posCorpus.append(corpus[step])
-                step = step + 1
-            else:
-                step = step + 1
+            step = step + 1
     return posCorpus
 
 filtered = posFilter(a, b, 'noun', dctnry)
